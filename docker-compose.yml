@@ -1,0 +1,106 @@
+version: '3.8'
+
+services:
+  # MySQL Database
+  db:
+    image: mysql:8.0
+    container_name: aiplatform-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-rootpassword}
+      MYSQL_DATABASE: ${DB_NAME:-aiplatform}
+      MYSQL_USER: ${DB_USER:-aiplatform}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-aiplatformpass}
+    ports:
+      - "33066:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - aiplatform
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: aiplatform-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - aiplatform
+
+  # Backend API
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: aiplatform-backend
+    restart: unless-stopped
+    environment:
+      - APP_NAME=AI Platform
+      - APP_VERSION=1.0.0
+      - ENVIRONMENT=production
+      - DEBUG=false
+      - HOST=0.0.0.0
+      - PORT=8000
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_USER=${DB_USER:-aiplatform}
+      - DB_PASSWORD=${DB_PASSWORD:-aiplatformpass}
+      - DB_NAME=${DB_NAME:-aiplatform}
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY:-your_jwt_secret_key_here}
+      - JWT_ALGORITHM=HS256
+      - JWT_ACCESS_TOKEN_EXPIRE_MINUTES=15
+      - JWT_REFRESH_TOKEN_EXPIRE_DAYS=7
+      - ALLOWED_ORIGINS=http://localhost,http://localhost:80,http://localhost:3000
+      - ENCRYPTION_KEY=${ENCRYPTION_KEY:-your_32_char_encryption_key_here}
+      - MCP_SIGNING_SECRET=${MCP_SIGNING_SECRET:-your_mcp_signing_secret}
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8000/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - aiplatform
+
+  # Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: aiplatform-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - aiplatform
+
+networks:
+  aiplatform:
+    driver: bridge
+
+volumes:
+  mysql_data:
+  redis_data:

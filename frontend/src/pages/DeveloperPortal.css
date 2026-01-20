@@ -1,0 +1,189 @@
+.developer-page {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.developer-page .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+}
+
+.btn-create {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    border: none;
+    border-radius: var(--radius-md);
+    color: white;
+    font-weight: 600;
+}
+
+.developer-loading {
+    text-align: center;
+    padding: var(--spacing-2xl);
+}
+
+.developer-empty {
+    text-align: center;
+    padding: var(--spacing-2xl);
+    border-radius: var(--radius-xl);
+}
+
+.developer-apps-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.developer-app-card {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+}
+
+.developer-app-card .app-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.developer-app-card .app-icon span {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+}
+
+.developer-app-card .app-info {
+    flex: 1;
+}
+
+.developer-app-card .app-info h3 {
+    margin-bottom: var(--spacing-xs);
+}
+
+.app-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.app-created {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.status-badge {
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    text-transform: capitalize;
+}
+
+.status-success {
+    background: rgba(16, 185, 129, 0.2);
+    color: var(--color-success);
+}
+
+.status-warning {
+    background: rgba(245, 158, 11, 0.2);
+    color: var(--color-warning);
+}
+
+.status-error {
+    background: rgba(239, 68, 68, 0.2);
+    color: var(--color-error);
+}
+
+.developer-app-card .app-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.btn-submit {
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--color-primary);
+    border: none;
+    border-radius: var(--radius-md);
+    color: white;
+    font-size: 0.875rem;
+}
+
+.btn-delete {
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: transparent;
+    border: 1px solid var(--color-error);
+    border-radius: var(--radius-md);
+    color: var(--color-error);
+    font-size: 0.875rem;
+}
+
+/* Modal */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+}
+
+.modal-content {
+    width: 100%;
+    max-width: 500px;
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-xl);
+}
+
+.modal-content h3 {
+    margin-bottom: var(--spacing-lg);
+}
+
+.modal-content .form-group {
+    margin-bottom: var(--spacing-md);
+}
+
+.modal-content .form-group label {
+    display: block;
+    font-size: 0.875rem;
+    margin-bottom: var(--spacing-xs);
+    color: var(--text-secondary);
+}
+
+.modal-content .form-group input,
+.modal-content .form-group textarea,
+.modal-content .form-group select {
+    width: 100%;
+    padding: var(--spacing-sm);
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+}
+
+.modal-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+    justify-content: flex-end;
+    margin-top: var(--spacing-lg);
+}
+
+.btn-cancel {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+}

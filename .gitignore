@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+.venv/
+env/
+.env
+.pytest_cache/
+.coverage
+htmlcov/
+dist/
+build/
+*.egg-info/
+
+# Frontend (Node/React)
+node_modules/
+frontend/dist/
+frontend/build/
+.npm
+.eslintcache
+
+# Project Specific
+backend/diagnose_backend.py
+backend/diag.txt
+backend/full_diag.txt
+backend/list_models.py
+backend/models.txt
+debug_*.py
+*.log
+.DS_Store
+.vscode/
+.idea/
