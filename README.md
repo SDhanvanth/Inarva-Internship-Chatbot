@@ -2,8 +2,6 @@
 
 Multi Chat AI is a powerful, intelligent chatbot platform featuring a built-in marketplace for AI applications. Powered by Google's Gemini AI, it offers seamless conversational experiences, content summarization, analysis, and code explanation capabilities.
 
-![Multi Chat AI](https://via.placeholder.com/800x400?text=Multi+Chat+AI+Preview)
-
 ## Features
 
 - **Built-in Gemini Chatbot**: Integrated directly via an internal MCP (Model Context Protocol) server.
@@ -21,7 +19,7 @@ Multi Chat AI is a powerful, intelligent chatbot platform featuring a built-in m
 - **Frontend**: React.js, Vite, TailwindCSS
 - **Backend**: Python, FastAPI
 - **Database**: MySQL (Async SQLAlchemy)
-- **AI Model**: Google Gemini 1.5/3.0 Flash
+- **AI Model**: Google Gemini 1.5/3.0 Flash for simple chat
 
 ## Prerequisites
 
@@ -107,5 +105,3 @@ Multi Chat AI uses a clean **frontend-backend architecture**:
 3.  **Enable Gemini**: Find "Gemini AI Assistant" and click "Enable".
 4.  **Chat**: Navigate to the Chat section and start a conversation!
 
----
-Developed for the Antigravity Project.
